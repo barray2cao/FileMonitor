@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--suppress ALL -->
+<mapper namespace="com.kanglefucn.userInfo.dao.mapper.ThermalImagingMapper">
+    <resultMap id="baseResultMap_1" type="com.kanglefucn.userInfo.dao.model.ThermalImaging">
+        <result column="nPatientID" property="nPatientID"/>
+        <result column="cNumber" property="StudyID"/>
+        <result column="cName" property="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result column="cSex" property="sex"/>
+        <result column="cAge" property="cAge"/>
+        <result column="cDate" property="cDate"/>
+        <result column="cBrithday" property="brithday"/>
+        <result column="cCheckProject" property="cCheckProject"/>
+        <result column="cOther" property="cOther"/>
+        <result column="c45AreaFlag" property="c45AreaFlag"/>
+    </resultMap>
+    <resultMap id="baseResultMap_2" type="com.kanglefucn.userInfo.dao.model.HWstudy">
+        <result column="cDiagnosisName" property="studyID"/>
+        <result column="cDate" property="studyDate"/>
+        <result column="cDoctorTip" property="studyDescription"/>
+        <result column="tizhi" property="auditResult"/>
+    </resultMap>
+    <select id="getUserInfoByID" resultMap="baseResultMap_1">
+        SELECT *
+        FROM wenpatient
+        WHERE cNumber = #{StudyID}
+    </select>
+    <select id="getHWstudyByStudyID" resultMap="baseResultMap_2">
+        SELECT *
+        FROM wendiagnosisinfo
+        ORDER BY cDate DESC
+        LIMIT 1
+    </select>
+    <insert id="save">
+    </insert>
+</mapper>
